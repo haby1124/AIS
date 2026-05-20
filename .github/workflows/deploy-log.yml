@@ -1,0 +1,26 @@
+name: Log de déploiement
+on:
+  push:
+    branches: [ PROD ]
+
+jobs:
+  log:
+    runs-on:
+      - self-hosted
+      - linux
+      - x64
+
+    steps:
+      - name: Écriture du log
+        run: |
+          mkdir -p ~/logs
+          echo "=============================" >> ~/logs/deploy.log
+          echo "Date : $(date)" >> ~/logs/deploy.log
+          echo "Branche : PROD" >> ~/logs/deploy.log
+          echo "Utilisateur : $(whoami)" >> ~/logs/deploy.log
+          echo "Machine : $(hostname)" >> ~/logs/deploy.log
+          echo "Déploiement réussi !" >> ~/logs/deploy.log
+          echo "=============================" >> ~/logs/deploy.log
+
+      - name: Affichage du log
+        run: cat ~/logs/deploy.log
