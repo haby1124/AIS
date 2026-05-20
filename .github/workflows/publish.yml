@@ -9,7 +9,7 @@ jobs:
     runs-on:
       - self-hosted
       - x64
-      - windows
+      - linux
 
     steps:
       - name: Récupération du code
